@@ -9,9 +9,9 @@ import pt.isel.poo.model.Grid;
  */
 public class Panel {
 
-    Grid model;
-    final int PIECE_SIZE =3;
-    ViewPiece vP;
+    private Grid model;
+    public static final int PIECE_SIZE =3;
+    private PieceView pieceView;
 
     static long  startTime;
 
@@ -19,20 +19,20 @@ public class Panel {
 
     public Panel(Grid model) {
         this.model = model;
-        vP = new ViewPiece();
+        pieceView = new PieceView();
         Console.open("ColorLink", (model.LINE*PIECE_SIZE)+1, model.COL*PIECE_SIZE);
         startTime = System.nanoTime();
     }
 
     public void repaint() {
+        System.out.println("First Time Repaint");
         for (int i=0; i <  model.LINE*PIECE_SIZE; i+=3)
-            for (int j=0 ; j< model.COL*PIECE_SIZE; j+=3) {
+            for (int j=0 ; j < model.COL*PIECE_SIZE; j+=3) {
                 paintPiece(i, j);
             }
     }
 
     public void repaintTime() {
-
 
         for(int i=0; i < model.COL*PIECE_SIZE; i++){
             Console.cursor((model.LINE*PIECE_SIZE), i );
@@ -46,27 +46,34 @@ public class Panel {
         Console.print(""+ duration/1000000000 + " segundos");
     }
 
-    public void close() {}
-
-    public void paintPiece(int line, int col,Grid model){
-
-
-        vP.getView(model.cells[line][col].getype())
-                .paintPiece(line, col, model);
-        //System.out.println("line "+line + "col "+ col + " "+model.cells[line/3][col/3].getype() );
-
+    public void close() {
+        Console.close();
     }
 
+
+
     public void paintPiece(int line, int col) {
-        //System.out.println("line "+line + "col "+ col + " "+model.cells[line/3][col/3].getype() );
-        //paintPiece(line, col, model);
-        ViewPiece v = vP.getView(model.cells[line/3][col/3].getype());
-                v.paintPiece(line, col, model);
+        // Ajustar os valores de line e col para início de cada celula
+        line = (line % 3 == 1) ? line - 1 : (line % 3 == 2) ? line - 2 : line;
+        col = (col % 3 == 1) ? col - 1 : (col % 3 == 2) ? col - 2 : col;
+
+        //Apagar a Celula selecionada e repintar a Celula/Peça com uma rotação  de 90º
+        for (int i = line; i < line + PIECE_SIZE; i++){
+            for (int j = col; j < col + PIECE_SIZE; j++){
+                Console.color(Console.BLACK, Console.BLACK);
+                Console.cursor(i,j);
+                Console.print(' ');
+            }
+        }
+        System.out.println("All area of Piece was paint to BLACK ");
+
+        PieceView v = pieceView.getView(model.pieces[line/PIECE_SIZE][col/PIECE_SIZE].getype());
+        v.paintPiece(line, col, model.pieces[line/PIECE_SIZE][col/PIECE_SIZE]);
 
     }
 
     public boolean toModelLocation(Location l) {
-        return false;
+        return true;
     }
 
     public void message(String winner) {

@@ -3,7 +3,7 @@ package pt.isel.poo.model;
 /**
  * Created by Moreira on 12/11/2016.
  */
-public class Empty extends Cell {
+public class Empty extends Piece {
 
     String type;
     final int color = 3;

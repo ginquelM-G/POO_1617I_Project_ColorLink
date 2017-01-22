@@ -3,7 +3,7 @@ package pt.isel.poo.model;
 /**
  * Created by Moreira on 12/11/2016.
  */
-public class Side extends Cell {
+public class Side extends Piece {
     public int color;
     @Override
     void setColor(int color) {

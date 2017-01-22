@@ -5,16 +5,13 @@ import isel.leic.pg.Console;
 /**
  *  Created by Moreira on 12/11/2016.
  */
-public abstract class Cell {
+public abstract class Piece {
     char type;
     int color;
     Direction dir;
 
      public enum Direction{
-        UP('u'),
-        RIGHT('r'),
-        DOWN('d'),
-        LEFT('l');
+        UP('u'), RIGHT('r'), DOWN('d'), LEFT('l');
 
         private char dirr;
 
@@ -32,9 +29,9 @@ public abstract class Cell {
             Console.RED, Console.GREEN, Console.BLUE
     };
 
-    public Cell(){ }
+    public Piece(){ }
 
-    public Cell(String type, int color, Direction dir){}
+    public Piece(String type, int color, Direction dir){}
 
 //    void setColor(int color){
 //        this.color = color;
@@ -47,6 +44,23 @@ public abstract class Cell {
 
     public abstract  Direction getDir();
     public abstract  void setDir(Direction dir);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    public Direction gerDir(){
 //        for(Direction d: Direction.values()){
 //            if(d.getDirection() == 'u')

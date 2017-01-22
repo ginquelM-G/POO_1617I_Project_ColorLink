@@ -3,7 +3,7 @@ package pt.isel.poo.model;
 /**
  *  Created by Moreira on 12/11/2016.
  */
-public class Corner extends Cell {
+public class Corner extends Piece {
 
     private int color;
 

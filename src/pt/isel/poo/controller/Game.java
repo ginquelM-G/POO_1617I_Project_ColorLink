@@ -12,15 +12,7 @@ import java.io.*;
 import java.util.*;
 
 public class Game {
-    public static void paintPiece(int line, int col) {
-        for(int i=0; i < 3; i++ ) {
-            for (int j = 0; j < 3; j++) {
-                Console.cursor(i, j);
-                Console.color(Console.RED, Console.CYAN);
-                Console.print('*');
-            }
-        }
-    }
+
     public static void main(String[] args) {
         Game game = new Game();
         game.run();
@@ -61,11 +53,14 @@ public class Game {
     }
 
     private boolean play() {
+        //System.out.println("Start play");
         int key = Console.waitKeyPressed(100);
         if (key==' ') return false;
         if (key==Console.MOUSE_EVENT) {
             Location l = Console.getMouseEvent(MouseEvent.DOWN);
-            if (l != null && view.toModelLocation(l) && model.rotate(l.line, l.col)) {
+            if (l != null && l.line < model.LINE* view.PIECE_SIZE
+                    && view.toModelLocation(l) && model.rotate(l.line, l.col)) {
+                System.out.println("\nplay() -> Call view.paintPiece() ");
                 view.paintPiece(l.line, l.col);
                 while( Console.getMouseEvent(MouseEvent.UP) == null) ;
             }

@@ -3,12 +3,18 @@ package pt.isel.poo.view;
 /**
  * Created by Moreira on 12/11/2016.
  */
-public class BlockViewPiece extends ViewPiece {
+public class EmptyPieceView extends PieceView {
 
     private char aspect = '+';
 
-    @Override
-    char getViewType() {
+
+
+    public char getViewType() {
         return aspect;
     }
+
+
+
+
+
 }

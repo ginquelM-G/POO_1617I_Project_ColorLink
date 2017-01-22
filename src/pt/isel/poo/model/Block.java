@@ -3,7 +3,7 @@ package pt.isel.poo.model;
 /**
  * Created by Moreira on 12/11/2016.
  */
-public class Block extends Cell{
+public class Block extends Piece {
 
     private char type;
     public int color;
@@ -16,7 +16,7 @@ public class Block extends Cell{
 
     @Override
     void setColor(int color) {
-        this.color =color;
+        this.color = color;
     }
 
     @Override

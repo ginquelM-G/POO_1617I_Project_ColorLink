@@ -3,7 +3,7 @@ package pt.isel.poo.model;
 /**
  * Created by Moreira on 12/11/2016.
  */
-public class Invert extends Cell {
+public class Invert extends Piece {
 
     public int color;
     @Override
